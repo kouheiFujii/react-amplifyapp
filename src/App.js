@@ -1,15 +1,20 @@
+import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import { withAuthenticator } from "@aws-amplify/ui-react";
 
-function App() {
+function App({ signOut, user }) {
   return (
     <div className="App">
-      <header className="App-header">
+      <header>
         <img src={logo} className="App-logo" alt="logo" />
-        <h1>Hello from V2</h1>
+        <h1>We now have Auth!</h1>
       </header>
+      <h1>Hello {user.username}</h1>
+      <button onClick={signOut}>Sign out</button>
     </div>
   );
 }
 
-export default App;
+// プラグインが提供する認証コンポーネントでラップする
+export default withAuthenticator(App);
